@@ -1,0 +1,41 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 25px;
+    width: fit-content;
+    border-radius: 8px;
+    background-color: var(--background-color-light);
+
+    &__title {
+        margin-bottom: 10px;
+        font-size: 20px;
+        line-height: 1;
+    }
+    &__input {
+        margin-bottom: 1em;
+        border-radius: 5px;
+        border: 1px solid var(--color-shark);
+    }
+
+    &__input:focus {
+        outline: none;
+    }
+    &__error {
+        font-size: 14px;
+        line-height: 1;
+        color: var(--color-disco);
+    }
+
+    &__buttons {
+        display: flex;
+        width: 100%;
+        gap: 20px;
+    }
+    &__add-button {
+        background-color: var(--background-color);
+        color: var(--background-color-light);
+    }
+    &__cancel-button {
+        border-color: var(--color-disco);
+    }
+}

@@ -1,0 +1,29 @@
+.bloсk-list {
+    &__title {
+        color: var(--text-color-light);
+    }
+
+    &__list {
+        max-width: 500px;
+        border: 1px solid var(--color-disco);
+        border-radius: 8px;
+    }
+    &__item {
+        display: flex;
+        position: relative;
+        padding-left: 20px;
+    }
+    &__item:not(:last-child) {
+        margin-bottom: 10px;
+    }
+}
+.item {
+    &__checkbox {
+        position: absolute;
+        left: 0;
+        top: 7px;
+    }
+    &__text {
+        width: 100%;
+    }
+}
