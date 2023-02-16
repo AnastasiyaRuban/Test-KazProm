@@ -1,26 +1,36 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
-// import { FETCH_POSTS, REQUEST_POSTS } from './types';
-// import { hideLoader, showAlert, showLoader } from './actions';
+import { FETCH_INFO, REQUEST_INFO } from './types';
+import { hideLoader, showAlert, showLoader } from './actions';
 
 export function* sagaWatcher() {
-  yield takeEvery('REQUEST_POSTS', sagaWorker);
+  yield takeEvery(REQUEST_INFO, sagaWorker);
 }
 
 function* sagaWorker() {
   try {
-    // yield put(showLoader());
-    const payload = yield call(fetchPosts);
-    yield put({ type: 'FETCH_POSTS', payload });
-    // yield put(hideLoader());
+    yield put(showLoader());
+    const payload = yield call(fetchInfo);
+    yield put({ type: FETCH_INFO, payload });
+    yield put(hideLoader());
   } catch (e) {
     // yield put(showAlert('Что-то пошло не так'));
-    // yield put(hideLoader());
+    yield put(hideLoader());
   }
 }
 
-async function fetchPosts() {
-  const response = await fetch(
-    'https://jsonplaceholder.typicode.com/posts?_limit=5'
-  );
+async function fetchInfo() {
+  const response = await fetch('https://graphqlzero.almansi.me/api', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({
+      query: `{
+        user(id: 1) {
+          name
+          username
+          email
+        }
+      }`,
+    }),
+  });
   return await response.json();
 }

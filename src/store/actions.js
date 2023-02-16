@@ -3,6 +3,7 @@ import {
   DELETE_ITEM,
   CHECK_ITEM,
   REQUEST_INFO,
+  FETCH_INFO,
   SHOW_LOADER,
   HIDE_LOADER,
   SHOW_ALERT,
@@ -26,5 +27,39 @@ export function toggleCheck(id) {
 export function deleteItem() {
   return {
     type: DELETE_ITEM,
+  };
+}
+
+export function fetchInfo() {
+  return {
+    type: REQUEST_INFO,
+  };
+}
+export function showLoader() {
+  return {
+    type: SHOW_LOADER,
+  };
+}
+export function hideLoader() {
+  return {
+    type: HIDE_LOADER,
+  };
+}
+export function showAlert(text) {
+  return (dispatch) => {
+    dispatch({
+      type: SHOW_ALERT,
+      payload: text,
+    });
+
+    setTimeout(() => {
+      dispatch(hideAlert());
+    }, 3000);
+  };
+}
+
+export function hideAlert() {
+  return {
+    type: HIDE_ALERT,
   };
 }

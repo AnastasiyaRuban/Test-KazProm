@@ -1,36 +1,30 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addItem } from '../../store/actions';
+import { addItem, showAlert } from '../../store/actions';
 import styles from './Form.module.scss';
 import Button from '../button/Button';
 
 export default function Form({ action }) {
   const [value, setValue] = useState('');
-  const [error, setError] = useState(false);
-  const inputRef = useRef(null);
   const dispatch = useDispatch();
 
   const addTask = (e) => {
     e.preventDefault();
+
+    if (!value.trim()) {
+      dispatch(showAlert('Введите текст'));
+      return;
+    }
+
     const newItem = {
       item: value,
       id: '_' + Math.random().toString(36).substring(2, 9),
       check: false,
     };
 
-    if (newItem) {
-      dispatch(addItem(newItem));
-      setValue('');
-    } else if (!newItem) {
-      setError(true);
-    }
+    dispatch(addItem(newItem));
+    setValue('');
   };
-
-  useEffect(() => {
-    return () => {
-      if (value) setError(false);
-    };
-  }, [value]);
 
   return (
     <form className={styles.form} onSubmit={(e) => addTask(e)}>
@@ -41,9 +35,8 @@ export default function Form({ action }) {
         value={value}
         onChange={(e) => setValue(e.target.value)}
         className={styles.form__input}
-        ref={inputRef}
       />
-      {error && <p className={styles.form__error}>Введите значение</p>}
+
       <div className={styles.form__buttons}>
         <Button content='Ок' className={styles['form__add-button']} />
         <Button

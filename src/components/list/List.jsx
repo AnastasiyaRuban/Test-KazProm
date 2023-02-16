@@ -5,7 +5,6 @@ import ListItem from './ListItem';
 
 export default function List() {
   const list = useSelector((state) => state.list.list);
-  console.log(list);
   return (
     <div className={styles['bloсk-list']}>
       {list.length > 0 ? (
