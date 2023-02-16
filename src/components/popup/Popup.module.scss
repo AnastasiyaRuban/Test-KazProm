@@ -1,0 +1,26 @@
+.popup {
+    padding: 15px 25px;
+    max-width: 500px;
+    border: 1px solid var(----color-shark);
+    border-radius: 8px;
+    background-color: var(--color-shark);
+    &__title {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+
+    &__buttons {
+        display: flex;
+        gap: 30px;
+    }
+
+    &__button:first-child {
+        background-color: rgb(109, 11, 35);
+        border-color: rgb(109, 11, 35);
+        color: var(--color-melanie);
+    }
+    &__button:last-child {
+        background-color: var(--color-green);
+        color: var(--color-melanie);
+    }
+}
