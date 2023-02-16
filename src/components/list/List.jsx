@@ -1,4 +1,3 @@
-import { style } from '@mui/system';
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styles from './List.module.scss';
@@ -6,6 +5,7 @@ import ListItem from './ListItem';
 
 export default function List() {
   const list = useSelector((state) => state.list.list);
+  console.log(list);
   return (
     <div className={styles['bloсk-list']}>
       {list.length > 0 ? (

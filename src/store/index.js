@@ -1,8 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import listReduser from './listSlice';
+// import { forbiddenWordsMiddleware } from './redux/middleware';
+import createSagaMiddleware from 'redux-saga';
+import { sagaWatcher } from './sagas';
+import { listReducer } from './listSlice';
+
+const saga = createSagaMiddleware();
 
 export default configureStore({
   reducer: {
-    list: listReduser,
+    list: listReducer,
   },
+  middleware: [saga],
 });
+saga.run(sagaWatcher);

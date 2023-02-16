@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { addItem } from '../../store/listSlice';
+import { addItem } from '../../store/actions';
 import styles from './Form.module.scss';
 import Button from '../button/Button';
 
@@ -12,12 +12,16 @@ export default function Form({ action }) {
 
   const addTask = (e) => {
     e.preventDefault();
-    const formData = new FormData(e.target);
+    const newItem = {
+      item: value,
+      id: '_' + Math.random().toString(36).substring(2, 9),
+      check: false,
+    };
 
-    if (formData.get('item')) {
-      dispatch(addItem({ formData }));
+    if (newItem) {
+      dispatch(addItem(newItem));
       setValue('');
-    } else if (!formData.get('item')) {
+    } else if (!newItem) {
       setError(true);
     }
   };

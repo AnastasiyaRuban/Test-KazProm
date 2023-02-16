@@ -1,31 +1,32 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { ADD_ITEM, DELETE_ITEM, CHECK_ITEM } from './types';
 
-const listSlice = createSlice({
-  name: 'list',
-  initialState: {
-    list: [],
-  },
-  reducers: {
-    addItem(state, action) {
-      const formData = action.payload.formData;
-      state.list.push({
-        id: '_' + Math.random().toString(36).substring(2, 9),
-        item: formData.get('item'),
-        check: false,
-      });
-    },
-    toggleCheck(state, action) {
-      const togleItem = state.list.find(
-        (item) => item.id === action.payload.id
-      );
-      togleItem.check = !togleItem.check;
-    },
-    deleteItem(state, action) {
-      state.list = state.list.filter((item) => item.check === false);
-    },
-  },
-});
+const initialState = {
+  list: [],
+};
 
-export const { addItem, toggleCheck, deleteItem } = listSlice.actions;
-
-export default listSlice.reducer;
+export const listReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case ADD_ITEM:
+      return { ...state, list: state.list.concat([action.payload]) };
+    case CHECK_ITEM:
+      return {
+        ...state,
+        list: state.list.map((item) => {
+          if (item.id !== action.payload) {
+            return item;
+          }
+          return {
+            ...item,
+            check: !item.check,
+          };
+        }),
+      };
+    case DELETE_ITEM:
+      return {
+        ...state,
+        list: state.list.filter((item) => item.check !== true),
+      };
+    default:
+      return state;
+  }
+};

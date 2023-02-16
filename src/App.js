@@ -1,6 +1,6 @@
 import './index.scss';
 import React, { useState } from 'react';
-import { deleteItem } from './store/listSlice';
+import { deleteItem } from './store/actions';
 import { useDispatch } from 'react-redux';
 import Button from './components/button/Button';
 import List from './components/list/List';
