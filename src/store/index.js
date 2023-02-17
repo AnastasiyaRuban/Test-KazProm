@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-// import { forbiddenWordsMiddleware } from './redux/middleware';
+import { forbiddenWordsMiddleware } from './middleware';
 import createSagaMiddleware from 'redux-saga';
 import { sagaWatcher } from './sagas';
 import thunk from 'redux-thunk';
@@ -15,6 +15,6 @@ export default configureStore({
     info: infoReducer,
     app: appReducer,
   },
-  middleware: [saga, thunk],
+  middleware: [saga, thunk, forbiddenWordsMiddleware],
 });
 saga.run(sagaWatcher);

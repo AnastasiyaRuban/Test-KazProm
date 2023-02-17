@@ -13,7 +13,7 @@ function* sagaWorker() {
     yield put({ type: FETCH_INFO, payload });
     yield put(hideLoader());
   } catch (e) {
-    // yield put(showAlert('Что-то пошло не так'));
+    yield put(showAlert('Что-то пошло не так'));
     yield put(hideLoader());
   }
 }

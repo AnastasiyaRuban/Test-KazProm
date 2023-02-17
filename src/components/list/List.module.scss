@@ -1,6 +1,6 @@
 .bloсk-list {
     &__title {
-        color: var(--text-color-light);
+        color: var(--color-dark);
     }
 
     &__list {
@@ -12,6 +12,7 @@
         display: flex;
         position: relative;
         padding-left: 20px;
+        color: var(--color-disco);
     }
     &__item:not(:last-child) {
         margin-bottom: 10px;

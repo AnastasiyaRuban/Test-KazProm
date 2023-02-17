@@ -54,7 +54,7 @@ export function showAlert(text) {
 
     setTimeout(() => {
       dispatch(hideAlert());
-    }, 3000);
+    }, 1500);
   };
 }
 

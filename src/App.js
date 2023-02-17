@@ -7,7 +7,7 @@ import Button from './components/button/Button';
 import List from './components/list/List';
 import Form from './components/form/Form';
 import Popup from './components/popup/Popup';
-import Snackbars from './components/snackbars/Snackbars';
+import TestGraphQL from './components/testGraphQL/TestGraphQL';
 import Loader from './components/loader/Loader';
 import Alert from './components/alert/Alert';
 
@@ -48,7 +48,7 @@ function App() {
           className='remove-button'
           action={() => handleOpenPopup()}
         />
-        <Snackbars />
+        <TestGraphQL />
       </div>
 
       <List />

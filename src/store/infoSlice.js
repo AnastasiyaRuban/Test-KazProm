@@ -4,7 +4,6 @@ const initialState = {
   fetchedInfo: [],
 };
 
-// Pure Functions
 export const infoReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_INFO:
